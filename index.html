@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Weather App</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>My Weather App</h1>
+        </header>
+
+        <section id="form">
+                <div id="api-div">
+                    <label>Enter your API key:</label>
+                    <input type="text" name="apikey" id="apikey">
+                </div>
+                <label>Zip Code:</label>
+                <input type="text" name="zip" id="zip">
+                <button id="submit">Submit</button>
+        </section>
+
+        <section id="weather" aria-live="polite" aria-relevant="additions removals"></section>
+
+    </main>
+    
+        
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" language="Javascript"></script>
+
+    <!-- javascript -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
