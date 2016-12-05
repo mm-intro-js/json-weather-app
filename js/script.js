@@ -61,9 +61,9 @@ $(document).ready(function () {
     },
 
     getFiveDayWeather: function () {
-      //var url = "//api.openweathermap.org/data/2.5/forecast?lat=" + weatherApp.lastLatitiude + "&lon=" + weatherApp.lastLongitude + "&appid=" + weatherApp.weatherApiKey + "&units=imperial";
+      var url = "//api.openweathermap.org/data/2.5/forecast?lat=" + weatherApp.lastLatitiude + "&lon=" + weatherApp.lastLongitude + "&appid=" + weatherApp.weatherApiKey + "&units=imperial";
 
-      var url = "testData/test5day.json"
+      //var url = "testData/test5day.json"
 
       $.getJSON(url, function (data) {
         var $target = $("#5day")
@@ -79,7 +79,7 @@ $(document).ready(function () {
             {
                 var myWeatherID = '#weather';
                 
-                $(myWeatherID).append('<p>Date: ' + data.list[idx].dt_txt + " " + "Condition(s): " + data.list[idx].weather[0].description + " ," + "Tempurature: "  + data.list[idx].main.temp + "," + "High: " + data.list[idx].main.temp_max + "," + "Low: " + data.list[idx].main.temp_min + "," + "Pressure: " + data.list[idx].main.pressure + "," + "Humidity: " + data.list[idx].main.humidity + "%");
+                $(myWeatherID).append('<p>Date: ' + data.list[idx].dt_txt + ", " + "Condition(s): " + data.list[idx].weather[0].description + " ," + "Tempurature: "  + data.list[idx].main.temp + "," + "High: " + data.list[idx].main.temp_max + "," + "Low: " + data.list[idx].main.temp_min + "," + "Pressure: " + data.list[idx].main.pressure + "," + "Humidity: " + data.list[idx].main.humidity + "%");
             }
         
         } else {
