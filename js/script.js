@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-  console.log("hello");
-
   weatherApp = {
 
     $targetArea: $("#weather"),
@@ -22,31 +20,41 @@ $(document).ready(function () {
       } else {
         weatherApp.getWeatherData(zip);
       }
-
-      console.log(weatherApp.weatherApiKey);
-      console.log(zip);
     },
 
     getWeatherData: function (zipcode) {
-      //var url = "//api.openweathermap.org/data/2.5/weather?zip=" + zipcode + ",us&appid=" + weatherApp.weatherApiKey + "&units=imperial";
+      var url = "//api.openweathermap.org/data/2.5/weather?zip=" + zipcode + ",us&appid=" + weatherApp.weatherApiKey + "&units=imperial";
 
-      var url = "testData/test.json"
+      //var url = "testData/test.json"
+      var e = 0;
 
       $.getJSON(url, function (data) {
 
         if (data.cod == 200) {
-          weatherApp.$targetArea.html("Success!");
-
-          // THIS IS WHERE YOU WOULD ADD THE DATA TO THE PAGE
-          // Add the city name
-
-          // Add the weather condition descriptions, all of them, comma separated
-
-          // Add the current temperature, the day's low & high temp, current pressure, & current humidity
-
-          // Get the lat & longitude from the result and save
-          weatherApp.lastLatitiude = "???";
-          weatherApp.lastLongitude = "???";
+            weatherApp.$targetArea.append("<p>City: " + data.name + "</br>" +   
+                                          "Current Pressure: " + data.main.pressure + "</br>" +
+                                          "Current Humidity: " + data.main.humidity + "</br>" +
+                                          "Current Temp: " + data.main.temp + 
+                                          " (Low: " + data.main.temp_min + " --- High: " + data.main.temp_max + ")" +
+                                          "</p>");
+            for (var i=0; i < data.weather.length; i++) {
+                $.each(data.weather[i], function(index, value) {
+                    e++;
+                    if (e == 4)
+                        {
+                            weatherApp.$targetArea.append(index + value + ".</br>");
+                            e=0;
+                            
+                        }
+                    else
+                        {
+                            weatherApp.$targetArea.append(index + value + ", ");
+                        };
+                });
+            };
+                    
+          weatherApp.lastLatitiude = data.coord.lat;
+          weatherApp.lastLongitude = data.coord.lon;
 
           // Add a button for 5 day forcast
           weatherApp.$targetArea.append('<div id="5day"><button id="fiveDay">Get 5 Day Forecast</button></div>');
@@ -61,21 +69,39 @@ $(document).ready(function () {
     },
 
     getFiveDayWeather: function () {
-      //var url = "//api.openweathermap.org/data/2.5/forecast?lat=" + weatherApp.lastLatitiude + "&lon=" + weatherApp.lastLongitude + "&appid=" + weatherApp.weatherApiKey + "&units=imperial";
+      var url = "//api.openweathermap.org/data/2.5/forecast?lat=" + weatherApp.lastLatitiude + "&lon=" + weatherApp.lastLongitude + "&appid=" + weatherApp.weatherApiKey + "&units=imperial";
 
-      var url = "testData/test5day.json"
+      //var url = "testData/test5day.json"
 
       $.getJSON(url, function (data) {
         var $target = $("#5day")
+        var e = 0;
         if (data.cod == 200) {
-          $target.html("Success!");
 
           // THIS IS WHERE YOU WOULD ADD THE 5 DAY FORCAST DATA TO THE PAGE
-
-          // For each of the 5 days, at each time specified, add the date/time plus:
-          //   - the weather condition descriptions, all of them, comma separated
-          //   - day's temp, low & high temp, pressure, humidity
-
+            
+            for (var i=0; i<data.list.length; i++) {
+                $target.append('<p>' + data.list[i].dt_txt + '</br>' +
+                               'Pressure: ' +data.list[i].main.pressure +
+                               ', Humidity: ' +data.list[i].main.Humidity +
+                               ', Current temp: ' +data.list[i].main.temp +
+                               ' (Low: ' +data.list[i].main.temp_min +
+                               '---High: ' +data.list[i].main.temp_max +
+                               ')</p>');
+                e=0;
+                $.each(data.list[i].weather[0], function(index, value) {
+                    e++;
+                    if (e == 4)
+                        {
+                            $target.append(index +": "+ value + ".");
+                            e=0;
+                        }
+                    else
+                        {
+                            $target.append(index +": "+ value + ", ");
+                        }
+                });
+            };
 
         } else {
           $target.html("Sorry, 5 day forcast data is unavailable. Try again later.");
