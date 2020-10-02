@@ -3,7 +3,7 @@ article, aside, figure, figcaption, footer, header, nav, section {
 }
 
 body {
-    background-color: floralwhite;
+    background-color: rgb(247, 219, 165);
     font-family: Arial, sans-serif;
     font-size: 1.3em;
 }
@@ -14,11 +14,16 @@ header {
     font-size: 2em;
     text-align: center;
     padding: 20px;
+    margin-bottom: -40px;
 }
 
 #form {
-    width: 50%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 label {
@@ -26,9 +31,42 @@ label {
 }
 
 input {
-    line-height: 1.5em;
+  display: block;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  background-color: rgba(252, 241, 241, 0.5);
+  border-radius: 8px 8px 16px 16px;
+  margin-bottom: 25px;
+  box-shadow: 0px 5px rgba(0,0,0,0.2);
+  color: #313131;
+  font-size: 20px;
+  transition: 0.4s ease;
 }
-
+button{
+    margin-top:30px;
+    margin-right:auto;
+    margin-left:auto;
+    padding: 8px 50px;
+    font-size: 22px;
+    color: white;
+    background-color:  rgb(139, 128, 235);
+    border-radius: 5px;
+    border: 1px solid  rgb(120, 108, 236);
+    cursor: pointer;
+}
+button:hover{
+    background-color: white;
+    color: black;
+}
+input:focus{
+    background-color: rgba(255, 255, 255, 0.75);
+}
 #weather {
     width: 80%;
     margin: auto;
