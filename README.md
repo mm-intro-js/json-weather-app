@@ -24,6 +24,9 @@ For this assignment, we will use the Open Weather API to make a simple JavaScrip
 ### Get API Key
 To work with the API, you must register and get an API key.  You can get a free key that is able to make a limited number of requests for data.
 
+### Store key
+If the key is in local storage, use the key that was stored and hide the form field for the API key.  If the key is not found in local storage, show the form field to enter the API key. Then store the key entered in local browser storage so it doesn't need to be entered again. 
+
 ### Get Weather by Zip Code
 Make a call to get the weather by zip code:  http://openweathermap.org/current#zip
 
