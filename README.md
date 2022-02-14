@@ -1,4 +1,4 @@
-#Simple Weather Application
+# Simple Weather Application
 
 This application uses the [Open Weather API](http://openweathermap.org/api) to display current weather data for a city with an option to also show the 5 day forcast data.
 
